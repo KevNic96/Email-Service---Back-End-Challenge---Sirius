@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+  id Int @id @default(autoincrement())
+  role String @default("user")
+  username String @unique
+  password String
+  Name String @db.VarChar(20)
+  LastName String @db.VarChar(20)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  sendedEmails Mail[] //SendedMails
+  emailQuota Int @default(0) //Quota
+  lastQuotaEmail String? @default("0") //LastQuotaCheck
+}
+
+model Mail{
+  id Int @id @default(autoincrement())
+  fromEmail User @relation(fields: [fromEmailId], references: [id]) //author
+  fromEmailId Int //authorId
+  toEmail String
+  subject String
+  body String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
