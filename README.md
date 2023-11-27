@@ -5,5 +5,19 @@ A service that accepts the necessary information and sends emails. It provides a
 ## Email Providers used: 
 
 . SendGrid
+
 . Mailgun
 
+## Testing
+It includes Unit Testing (Jest).
+
+## Language and Restrictions
+Technologies used to complete the challenge:
+
+. ExpressJS
+
+. Javascript/Typescript (Node.js)
+
+. Prisma
+
+. PostgreSQL
